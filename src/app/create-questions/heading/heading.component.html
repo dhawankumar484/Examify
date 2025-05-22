@@ -1,0 +1,35 @@
+<section class="container max-w-4xl bg-white shadow-lg rounded px-5 my-5 pb-5">
+    <div class="py-5">
+        <h4 class="text-2xl fw-bold mb-4 text-center">Customize Your Question Paper Heading</h4>
+    </div>
+
+    <div class="row" *ngFor="let heading of headings; index as i">
+        <div class="col-12 row">
+            <div class="col-12 col-md-10">
+                <h5 class="text-2xl mt-3">Heading {{i+1}}</h5>
+                <input type="text" [(ngModel)]="heading.title" class="form-control" [placeholder]="'Enter heading ' + (i+1)">
+            </div>
+            <div class="col-6 col-md-3 mt-3">
+                <h5 class="text-2xl mt-3">Heading Size</h5>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="heading.fontSize">
+                    <option value="18">18</option>
+                    <option value="20">20</option>
+                    <option value="22">22</option>
+                    <option value="24">24</option>
+                </select>
+            </div>
+            <div class="col-6 col-md-3 mt-3">
+                <h5 class="text-2xl mt-3">Heading Alignment</h5>
+                <select class="form-select" aria-label="Default select example" [(ngModel)]="heading.align">
+                    <option value="left">Left</option>
+                    <option value="center">Center</option>
+                    <option value="right">Right</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-end">
+        <button type="button" class="btn btn-primary btn-lg" [routerLink]="['/start/heading/finalize']"> Skip heading</button>
+    </div>
+</section>

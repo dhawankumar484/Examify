@@ -114,7 +114,7 @@ export class CreateQuestionsComponent implements OnInit {
       })
       console.log("YAY!!!, form Submitted");
       localStorage.setItem("examifyQuestions", JSON.stringify(form));
-      this.router.navigate(["/start/finalize"]);
+      this.router.navigate(["/start/heading"]);
     }
     else{
       
