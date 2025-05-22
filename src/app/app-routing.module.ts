@@ -5,7 +5,7 @@ import { CreateQuestionsComponent } from './create-questions/create-questions.co
 
 const routes: Routes = [
   { path:"", pathMatch:"full", component: HomeComponent},
-  { path:"start", component: CreateQuestionsComponent}
+  { path:"start", pathMatch:"full", component: CreateQuestionsComponent}
 ];
 
 @NgModule({
