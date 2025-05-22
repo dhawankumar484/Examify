@@ -75,6 +75,7 @@ export class CreateQuestionsComponent implements OnInit {
     
   }
 
+  numberOfOptions:any = [];
   addOptionFields(event:any, index:any){
     Object.keys(this.questions?.controls[index]?.value).forEach(controlName => {
         if (controlName?.startsWith('option')) {
@@ -83,15 +84,19 @@ export class CreateQuestionsComponent implements OnInit {
     });
     if(!isNaN(Number(event.target.value))){
       for(let i=0; i<Number(event.target.value); i++){
-        (this.questions?.controls[index] as FormGroup)?.addControl('option'+(i+1), new FormControl(null, [Validators.required]));
+        (this.questions?.controls[index] as FormGroup)?.addControl('option'+(i+1), new FormControl('', [Validators.required]));
       }
+      this.numberOfOptions[index] = event.target.value;
+    }
+    else{
+      this.numberOfOptions[index] = 0;
     }
   }
 
   getOptionArray(number:any){
     let options:any = [];
     let num = Number(number)
-    if(number>0){
+    if(num>0){
       return Array.from({ length: num }, (_, i) => i);
     }
     return options;

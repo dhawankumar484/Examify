@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="row my-3">
-                    <div *ngFor="let option of getOptionArray(questions.controls[i].value.numberOfOption); index as j" class="col-12 col-md-5 com-lg-4">
+                    <div *ngFor="let option of getOptionArray(numberOfOptions[i]); index as j" class="col-12 col-md-5 com-lg-4">
                         <h6 class="text-2xl mt-3">Option {{j+1}}</h6>
                         <input type="text" [formControlName]="'option' + (j+1)" class="form-control" [placeholder]="'Enter option ' + (j+1)">
                         <div *ngIf="f[i].get('option' + (j+1))?.errors?.['required'] && (f[i].get('option' + (j+1))?.touched || f[i].get('option' + (j+1))?.dirty)" class="text-danger">
