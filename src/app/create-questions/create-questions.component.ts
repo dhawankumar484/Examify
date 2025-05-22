@@ -108,7 +108,12 @@ export class CreateQuestionsComponent implements OnInit {
    submit(){
     console.log("submit form", this.questionForm);
     if(this.questionForm.valid){
-      console.log("YAY!!!, form Submitted")
+      let form:any = [];
+      this.questions.controls.forEach(control => {
+        form.push(control.value);
+      })
+      console.log("YAY!!!, form Submitted");
+      localStorage.setItem("examifyQuestions", JSON.stringify(form));
       this.router.navigate(["/start/finalize"]);
     }
     else{

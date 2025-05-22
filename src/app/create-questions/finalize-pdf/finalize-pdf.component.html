@@ -1,1 +1,16 @@
-<button (click)="createCustomPDF()">click</button>
+
+<h1 class="mt-5 pt-3 pb-1 mb-3 fw-bold text-center">Download Your Question Paper</h1>
+
+<h3 class="my-3 fw-light text-center">Your question paper has been converted into PDF file</h3>
+
+
+<div class="text-center mt-5">
+    <button type="button" class="btn btn-danger btn-lg align-items-center row" (click)="createCustomPDF()" > 
+        <span class="col">Download Paper</span>
+        <span *ngIf="loadPDFButton" class="spinner-border text-light" role="status">
+        </span>
+    </button>
+</div>
+
+
+
