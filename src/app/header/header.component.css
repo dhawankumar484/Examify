@@ -1,0 +1,8 @@
+/* logo image and dropdown */
+.img{
+   background-image: url("../../assets/Images/examify_logo.png");
+   width: 60px;
+   background-size: 100%;
+   height: 55px;
+   cursor: pointer;
+}
