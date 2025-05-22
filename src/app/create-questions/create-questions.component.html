@@ -52,13 +52,13 @@
                     </div>
 
                     <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
-                        <input type="radio" formControlName="type" class="custom-control-input" value="binary" ngModel>
-                        <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="binary" (click)="selectOther(i)">True/False</label>
+                        <input type="radio" formControlName="type" class="custom-control-input" value="binary" ngModel (click)="selectOther(i)">
+                        <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="binary">True/False</label>
                     </div>
 
                     <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
-                        <input type="radio" formControlName="type" class="custom-control-input" value="no_answer" ngModel>
-                        <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="no_answer" (click)="selectOther(i)">No Answer</label>
+                        <input type="radio" formControlName="type" class="custom-control-input" value="no_answer" ngModel (click)="selectOther(i)">
+                        <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="no_answer">No Answer</label>
                     </div>
                 </div>
                 <div *ngIf="f[i].get('type')?.errors?.['required'] && (f[i].get('type')?.touched || f[i].get('type')?.dirty)" class="text-danger">
