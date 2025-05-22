@@ -11,9 +11,26 @@ export class HeadingComponent implements OnInit {
 
   headings:any[] = [{title:'', fontSize:null, align:null}]
 
-  constructor() { }
+  constructor(private router : Router) { }
 
   ngOnInit(): void {
+  }
+
+  addHeading(){
+    if(this.headings.length<5){
+      this.headings.push({title:'', fontSize:null, align:null});
+    }
+    else{
+    }
+  }
+
+  deleteHeading(index:any){
+    this.headings.splice(index, 1)
+  }
+
+  routeToPdf(){
+    localStorage.setItem("examifyHeadings", JSON.stringify(this.headings));
+    this.router.navigate(["/start/heading/finalize"]);
   }
 
 }

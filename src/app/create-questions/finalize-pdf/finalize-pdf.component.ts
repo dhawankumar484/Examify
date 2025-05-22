@@ -10,6 +10,7 @@ import jsPDF from 'jspdf';
 export class FinalizePdfComponent implements OnInit {
 
   questions:any = [];
+  headings:any[] = [];
 
   constructor() { }
 
@@ -17,9 +18,12 @@ export class FinalizePdfComponent implements OnInit {
     let localValue = localStorage.getItem('examifyQuestions');
     this.questions = JSON.parse(localValue ? localValue : "[]");
 
-  }
+    let localValue2 = localStorage.getItem('examifyHeadings');
+    this.headings = JSON.parse(localValue2 ? localValue2 : "[]")
 
-  headings:any[]=[ {heading : "Hello World", fontSize:20, align: 'center', }, {heading : "Hello qwertyuioplkjhgfdsazxcvbnm", fontSize:30, align: 'left'}]
+    console.log("headingssss", this.headings);
+
+  }
   loadPDFButton:boolean = false;
   createCustomPDF(isEmail?: boolean) {
     this.loadPDFButton = true;
@@ -34,19 +38,24 @@ export class FinalizePdfComponent implements OnInit {
     const pageWidth = pdf.internal.pageSize.width || pdf.internal.pageSize.getWidth();
     console.log("err", pageHeight)
     pdf.setFont("Symbol");
-    let startHeight = 20;
+    let startHeight = 0;
     this.headings.forEach(element => {
+      startHeight += 20;
       pdf.setFontSize(element.fontSize);
       pdf.setFont(undefined, 'bold');
       if(element.align == 'center'){
-        pdf.text(element.heading, pageWidth / 2, startHeight, 'center')
+        pdf.text(element.title, pageWidth / 2, startHeight, 'center')
+      }
+      else if(element.align == 'right'){
+        const textWidth = pdf.getTextWidth(element.title);
+        pdf.text(element.title, pageWidth - 20, startHeight, 'right')
       }
       else{
-        pdf.text(element.heading, 20, startHeight, 'left')
+        pdf.text(element.title, 20, startHeight, 'left')
       }
-      startHeight+=20;
     })
 
+    startHeight+=15;
 
     pdf.setLineWidth(1.5);
     pdf.line(15, startHeight, pageWidth-15, startHeight);

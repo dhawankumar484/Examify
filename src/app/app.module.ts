@@ -9,7 +9,6 @@ import { CreateQuestionsComponent } from './create-questions/create-questions.co
 import { HeaderComponent } from './header/header.component';
 import { FinalizePdfComponent } from './create-questions/finalize-pdf/finalize-pdf.component';
 import { HeadingComponent } from './create-questions/heading/heading.component';
-
 @NgModule({
   declarations: [
     AppComponent,
