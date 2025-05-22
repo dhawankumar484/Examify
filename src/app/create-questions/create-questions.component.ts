@@ -54,6 +54,7 @@ export class CreateQuestionsComponent implements OnInit {
           (this.questions?.controls[index] as FormGroup).removeControl(controlName);
         }
     });
+    this.numberOfOptions[index] = 0;
     (this.questions?.controls[index] as FormGroup)?.addControl('numberOfLine', new FormControl(null, [Validators.required, Validators.max(10), Validators.min(2)]));
   }
 
@@ -63,6 +64,7 @@ export class CreateQuestionsComponent implements OnInit {
           (this.questions?.controls[index] as FormGroup).removeControl(controlName);
         }
     });
+    this.numberOfOptions[index] = 0;
     (this.questions?.controls[index] as FormGroup)?.addControl('numberOfOption', new FormControl(null, [Validators.required, Validators.max(10), Validators.min(2)]));
   }
 
@@ -72,6 +74,7 @@ export class CreateQuestionsComponent implements OnInit {
           (this.questions?.controls[index] as FormGroup).removeControl(controlName);
         }
     });
+    this.numberOfOptions[index] = 0;
     
   }
 
@@ -106,6 +109,7 @@ export class CreateQuestionsComponent implements OnInit {
     console.log("submit form", this.questionForm);
     if(this.questionForm.valid){
       console.log("YAY!!!, form Submitted")
+      this.router.navigate(["/start/finalize"]);
     }
     else{
       

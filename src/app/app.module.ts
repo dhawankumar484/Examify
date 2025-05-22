@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { CreateQuestionsComponent } from './create-questions/create-questions.component';
 import { HeaderComponent } from './header/header.component';
+import { FinalizePdfComponent } from './create-questions/finalize-pdf/finalize-pdf.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CreateQuestionsComponent,
-    HeaderComponent
+    HeaderComponent,
+    FinalizePdfComponent
   ],
   imports: [
     BrowserModule,
