@@ -105,16 +105,21 @@ export class CreateQuestionsComponent implements OnInit {
     return options;
    }
 
+   submitLoader:boolean = false;
    submit(){
     console.log("submit form", this.questionForm);
     if(this.questionForm.valid){
-      let form:any = [];
-      this.questions.controls.forEach(control => {
-        form.push(control.value);
-      })
-      console.log("YAY!!!, form Submitted");
-      localStorage.setItem("examifyQuestions", JSON.stringify(form));
-      this.router.navigate(["/start/heading"]);
+      this.submitLoader = true;
+      setTimeout(() =>{
+        let form:any = [];
+        this.questions.controls.forEach(control => {
+          form.push(control.value);
+        })
+        console.log("YAY!!!, form Submitted");
+        localStorage.setItem("examifyQuestions", JSON.stringify(form));
+        this.submitLoader = true;
+        this.router.navigate(["/start/heading"]);
+      },500)
     }
     else{
       this.questions.controls.forEach(control => {

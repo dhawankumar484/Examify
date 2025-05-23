@@ -1,9 +1,14 @@
-<section class="container max-w-4xl bg-white shadow-lg rounded px-5 my-5 pb-5">
-    <div class="py-5">
+<section class="container max-w-4xl bg-white shadow-lg rounded my-5 pb-5">
+    <div>
+        <button type="button" class="btn btn-secondary my-3 mx-4 rounded-pill" [routerLink]="['/']">
+            <i class="bi bi-arrow-left-circle-fill"></i>
+        </button>
+    </div>
+    <div class="pb-3">
         <h4 class="text-2xl fw-bold mb-4 text-center">Write Question and Select type of Question</h4>
     </div>
 
-    <form [formGroup]="questionForm">
+    <form [formGroup]="questionForm" class="px-3 mx-3">
 
         <div formArrayName="questions" *ngFor="let question of questions.controls; let i = index" class="mt-3">
             <ng-container [formGroupName]="i">
@@ -17,7 +22,7 @@
                 </div>
                 <h6 class="text-2xl mt-3">Select type of Answer</h6>
                 <div class="row">
-                    <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
+                    <div class="col-12 col-md-6 col-lg-3 custom-control custom-radio mt-2 mt-lg-0">
 					    <input type="radio" formControlName="type" class="custom-control-input" value="input" ngModel (click)="addLineInput(i)">
                         <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="input">Written</label>
                         <div class="mt-2" *ngIf="questions.controls[i].value.type=='input'">
@@ -34,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
+                    <div class="col-12 col-md-6 col-lg-3 custom-control custom-radio mt-2 mt-lg-0">
                         <input type="radio" formControlName="type" class="custom-control-input" value="multiple" ngModel (click)="addNumberOfOption(i)">
                         <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="multiple">Multiple Choice</label>
                         <div class="mt-2" *ngIf="questions.controls[i].value.type=='multiple'" max (keyup)="addOptionFields($event, i)">
@@ -51,12 +56,12 @@
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
+                    <div class="col-12 col-md-6 col-lg-3 custom-control custom-radio mt-2 mt-lg-0">
                         <input type="radio" formControlName="type" class="custom-control-input" value="binary" ngModel (click)="selectOther(i)">
                         <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="binary">True/False</label>
                     </div>
 
-                    <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
+                    <div class="col-12 col-md-6 col-lg-3 custom-control custom-radio mt-2 mt-lg-0">
                         <input type="radio" formControlName="type" class="custom-control-input" value="no_answer" ngModel (click)="selectOther(i)">
                         <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="no_answer">No Answer</label>
                     </div>
@@ -84,7 +89,10 @@
 
         <!-- Submit Button -->
         <div class="col-12 justify-content-end text-end mt-5">
-            <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="submit()">Submit Questions</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="submit()">
+                Submit Questions
+                <span *ngIf="submitLoader" class="spinner-border spinner-border-sm text-light" role="status"></span>
+            </button>
         </div>
     </form>
 </section>

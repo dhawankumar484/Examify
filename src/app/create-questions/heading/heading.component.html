@@ -1,10 +1,15 @@
-<section class="container max-w-4xl bg-white shadow-lg rounded px-5 my-5 pb-5">
-    <div class="py-5">
+<section class="container max-w-4xl bg-white shadow-lg rounded my-5 pb-5">
+    <div>
+        <button type="button" class="btn btn-secondary my-3 mx-4 rounded-pill" [routerLink]="['/start']">
+            <i class="bi bi-arrow-left-circle-fill"></i>
+        </button>
+    </div>
+    <div class="pb-3">
         <h4 class="text-2xl fw-bold mb-2 text-center">Customize Your Question Paper Heading</h4>
         <p class="text-2xl  mb-4 text-grey text-center">(You can only add upto 5 headings)</p>
     </div>
 
-    <div class="row" *ngFor="let heading of headings; index as i">
+    <div class="row px-3 mx-3" *ngFor="let heading of headings; index as i">
         <div class="col-12 row">
             <div *ngIf="i>0 || headings.length>1" (click)="deleteHeading(i)" class="col-lg-12 text-end text-danger h-20 bg-transparent mx-2 px-2 cursor-pointer">
                 <u>Delete</u>
@@ -34,11 +39,14 @@
         </div>
         <hr class="mt-5 mb-3" *ngIf="i<headings.length-1">
     </div>
-    <div *ngIf="headings.length<5" class="col-lg-12 text-danger text-end fw-bold bg-transparent p-0">
+    <div *ngIf="headings.length<5" class="text-danger text-end fw-bold bg-transparent py-0 px-3 mx-3">
         <u (click)="addHeading()" class="cursor-pointer">+ Add</u> 
     </div>
 
-    <div class="text-end mt-5">
-        <button type="button" class="btn btn-primary btn-lg" (click)="routeToPdf()">Create</button>
+    <div class="text-end mt-5 px-3 mx-3">
+        <button type="button" class="btn btn-primary btn-lg" (click)="routeToPdf()">
+            Create
+            <span *ngIf="createLoader" class="spinner-border spinner-border-sm text-light" role="status"></span>
+        </button>
     </div>
 </section>

@@ -28,9 +28,14 @@ export class HeadingComponent implements OnInit {
     this.headings.splice(index, 1)
   }
 
+  createLoader:boolean = false;
   routeToPdf(){
-    localStorage.setItem("examifyHeadings", JSON.stringify(this.headings));
-    this.router.navigate(["/start/heading/finalize"]);
+    this.createLoader = true;
+    setTimeout(() => {
+      localStorage.setItem("examifyHeadings", JSON.stringify(this.headings));
+      this.createLoader = false;
+      this.router.navigate(["/start/heading/finalize"]);
+    },500)
   }
 
 }
