@@ -3,5 +3,6 @@ body{
     background-image: url("../src/assets/Images/homepage_background.jpg");
     background-size: cover;
     background-repeat: round;
+    background-color: #808080;
     height: 100vh;
 }
