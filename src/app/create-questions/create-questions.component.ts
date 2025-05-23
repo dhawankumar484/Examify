@@ -85,7 +85,7 @@ export class CreateQuestionsComponent implements OnInit {
           (this.questions?.controls[index] as FormGroup).removeControl(controlName);
         }
     });
-    if(!isNaN(Number(event.target.value))){
+    if(!isNaN(Number(event.target.value)) && (this.questions?.controls[index] as FormGroup).controls['numberOfOption'].valid){
       for(let i=0; i<Number(event.target.value); i++){
         (this.questions?.controls[index] as FormGroup)?.addControl('option'+(i+1), new FormControl('', [Validators.required]));
       }
@@ -103,6 +103,10 @@ export class CreateQuestionsComponent implements OnInit {
       return Array.from({ length: num }, (_, i) => i);
     }
     return options;
+   }
+
+   changeOption(){
+    
    }
 
    submitLoader:boolean = false;
