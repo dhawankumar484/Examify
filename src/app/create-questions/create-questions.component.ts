@@ -117,7 +117,12 @@ export class CreateQuestionsComponent implements OnInit {
       this.router.navigate(["/start/heading"]);
     }
     else{
-      
+      this.questions.controls.forEach(control => {
+        if(control.invalid){
+          control.markAllAsTouched();
+          control.markAsDirty();
+        }
+      })
     }
    }
 
