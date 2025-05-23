@@ -19,18 +19,18 @@
                 <div class="row">
                     <div class="col-12 col-md-4 col-lg-3 custom-control custom-radio mt-2 mt-md-0">
 					    <input type="radio" formControlName="type" class="custom-control-input" value="input" ngModel (click)="addLineInput(i)">
-                        <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="input">Input</label>
+                        <label style="margin-left: 8px;" class="form-check-label custom-control-label" for="input">Written</label>
                         <div class="mt-2" *ngIf="questions.controls[i].value.type=='input'">
                             <input type="number" formControlName="numberOfLine" class="form-control" placeholder="Add number of line">
                         </div>
                         <div *ngIf="f[i].get('numberOfLine')?.errors?.['required'] && (f[i].get('numberOfLine')?.touched || f[i].get('numberOfLine')?.dirty)" class="text-danger">
-                            Number of Input Lines is required.
+                            Number of Lines is required.
                         </div>
                         <div *ngIf="f[i].get('numberOfLine')?.errors?.['min'] && (f[i].get('numberOfLine')?.touched || f[i].get('numberOfLine')?.dirty)" class="text-danger">
-                            Minimum Options should not be less than 2.
+                            Minimum Lines should not be less than 2.
                         </div>
                         <div *ngIf="f[i].get('numberOfLine')?.errors?.['max'] && (f[i].get('numberOfLine')?.touched || f[i].get('numberOfLine')?.dirty)" class="text-danger">
-                            Maximum Options should not be more than 10.
+                            Maximum Lines should not be more than 10.
                         </div>
                     </div>
 
