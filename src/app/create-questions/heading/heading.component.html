@@ -11,12 +11,12 @@
             </div>
             <div class="col-12 col-md-10">
                 <h5 class="text-2xl mt-3">Heading {{i+1}}</h5>
-                <input type="text" [(ngModel)]="heading.title" class="form-control" [placeholder]="'Enter heading ' + (i+1)">
+                <input type="text" [(ngModel)]="heading.title" class="form-control" [placeholder]="'Enter heading ' + (i+1)" required>
             </div>
             <div class="col-6 col-md-3 mt-3">
                 <h5 class="text-2xl mt-3">Heading {{i+1}} Font Size</h5>
                 <select class="form-select" aria-label="Default select example" [(ngModel)]="heading.fontSize" placeholder="Select Font Size">
-                    <option value="16" selected>16</option>
+                    <option value="16">16</option>
                     <option value="18">18</option>
                     <option value="20">20</option>
                     <option value="22">22</option>
@@ -26,7 +26,7 @@
             <div class="col-6 col-md-3 mt-3">
                 <h5 class="text-2xl mt-3">Heading {{i+1}} Alignment</h5>
                 <select class="form-select" aria-label="Default select example" [(ngModel)]="heading.align" placeholder="Select Alignment">
-                    <option value="left" selected>Left</option>
+                    <option value="left">Left</option>
                     <option value="center">Center</option>
                     <option value="right">Right</option>
                 </select>

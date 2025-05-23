@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeadingComponent implements OnInit {
 
-  headings:any[] = [{title:'', fontSize:null, align:null}]
+  headings:any[] = [{title:'', fontSize:18, align:'center'}]
 
   constructor(private router : Router) { }
 
@@ -18,7 +18,7 @@ export class HeadingComponent implements OnInit {
 
   addHeading(){
     if(this.headings.length<5){
-      this.headings.push({title:'', fontSize:null, align:null});
+      this.headings.push({title:'', fontSize:18, align:'center'});
     }
     else{
     }
