@@ -19,11 +19,11 @@
 
         <div formArrayName="questions" *ngFor="let question of questions.controls; let i = index" class="mt-3">
             <ng-container [formGroupName]="i">
-                <div *ngIf="i>0 || questions.controls.length>1" class="col-lg-12 text-end text-danger h-20 bg-transparent mx-2 px-2 cursor-pointer">
+                <!-- <div *ngIf="i>0 || questions.controls.length>1" class="col-lg-12 text-end text-danger h-20 bg-transparent mx-2 px-2 cursor-pointer">
                     <span role="button" class="text-danger link-underline-danger icon-link icon-link-hover link-secondary" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="toBeDeleted = i" >
                         <i class="bi bi-trash mb-2 ps-1"></i> Delete
                     </span>
-                </div>
+                </div> -->
 
                 <h6 class="text-2xl">Question {{i+1}}</h6>
                 <div class="ms-2">
@@ -35,27 +35,27 @@
                 <h6 class="text-2xl mt-3">Select Type of Answer</h6>
                 <div class="">
                     <span class="custom-control custom-radio mt-2 mt-lg-0">
-					    <input type="radio" formControlName="type" class="btn-check" value="input" id="input" ngModel (click)="addLineInput(i)">
-                        <label style="margin-left: 8px;" class="mt-2 col-12 col-sm-5 col-lg-2 form-check-label custom-control-label btn btn-outline-success" for="input">Written</label>
+					    <input type="radio" formControlName="type" class="btn-check" value="input" id="input{{(i+1)}}" (click)="addLineInput(i)">
+                        <label class="mt-2 col-12 col-sm-5 col-lg-2 ms-2 form-check-label custom-control-label btn btn-outline-success" for="input{{(i+1)}}">Written</label>
                     </span>
 
                     <span class="custom-control custom-radio mt-2 mt-lg-0">
-                        <input type="radio" formControlName="type" class="btn-check" value="multiple" id="multiple" ngModel (click)="addNumberOfOption(i)">
-                        <label style="margin-left: 8px;" class="mt-2 col-12 col-sm-5 col-lg-2 form-check-label custom-control-label btn btn-outline-success" for="multiple">Multiple Choice</label>
+                        <input type="radio" formControlName="type" class="btn-check" value="multiple" id="multiple{{(i+1)}}" (click)="addNumberOfOption(i)">
+                        <label class="mt-2 col-12 col-sm-5 col-lg-2 ms-2 form-check-label custom-control-label btn btn-outline-success" for="multiple{{(i+1)}}">Multiple Choice</label>
                     </span>
 
                     <span class="custom-control custom-radio mt-2 mt-lg-0">
-                        <input type="radio" formControlName="type" class="btn-check" value="binary" id="binary" ngModel (click)="selectOther(i)">
-                        <label style="margin-left: 8px;" class="mt-2 col-12 col-sm-5 col-lg-2 form-check-label custom-control-label btn btn-outline-success" for="binary">True/False</label>
+                        <input type="radio" formControlName="type" class="btn-check" value="binary" id="binary{{(i+1)}}" (click)="selectOther(i)">
+                        <label class="mt-2 col-12 col-sm-5 col-lg-2 ms-2 form-check-label custom-control-label btn btn-outline-success" for="binary{{(i+1)}}">True/False</label>
                     </span>
 
                     <span class="custom-control custom-radio mt-2 mt-lg-0">
-                        <input type="radio" formControlName="type" class="btn-check" value="no_answer"  id="no_answer" ngModel (click)="selectOther(i)">
-                        <label style="margin-left: 8px;" class="mt-2 col-12 col-sm-5 col-lg-2 form-check-label custom-control-label btn btn-outline-success" for="no_answer">No Answer</label>
+                        <input type="radio" formControlName="type" class="btn-check" value="no_answer"  id="no_answer{{(i+1)}}" (click)="selectOther(i)">
+                        <label class="mt-2 col-12 col-sm-5 col-lg-2 ms-2 form-check-label custom-control-label btn btn-outline-success" for="no_answer{{(i+1)}}">No Answer</label>
                     </span>
-                    <div *ngIf="f[i].get('type')?.errors?.['required'] && (f[i].get('type')?.touched || f[i].get('type')?.dirty)" class="text-danger ms-2">
+                    <!-- <div *ngIf="f[i].get('type')?.errors?.['required'] && (f[i].get('type')?.touched || f[i].get('type')?.dirty)" class="text-danger ms-2">
                         Answer Type is required.
-                    </div>
+                    </div> -->
 
                     <div class="mt-3 ms-2 col-12 col-md-6 col-lg-4" *ngIf="questions.controls[i].value.type=='input'">
                         <input type="number" formControlName="numberOfLine" class="form-control" placeholder="Enter number of lines" >
@@ -70,7 +70,7 @@
                         </span>
                     </div>
 
-                    <div class="mt-3 ms-2 col-12 col-md-6 col-lg-4" *ngIf="questions.controls[i].value.type=='multiple'" max (keyup)="addOptionFields($event, i)">
+                    <div class="mt-3 ms-2 col-12 col-md-6 col-lg-4" *ngIf="questions.controls[i].value.type=='multiple'" (keyup)="addOptionFields($event, i)">
                         <input type="number" formControlName="numberOfOption" class="form-control" placeholder="Enter number of options">
                         <span *ngIf="f[i].get('numberOfOption')?.errors?.['required'] && (f[i].get('numberOfOption')?.touched || f[i].get('numberOfOption')?.dirty)" class="text-danger">
                             Number of Options is required.
@@ -151,11 +151,11 @@
       <div class="modal-body">
         <h6 class="mb-3 ms-2">Drag and Drop Questions To Change Order</h6>
         <div class="container">
-            <div cdkDropList (cdkDropListDropped)="globalService.drop($event, formArray)" class="list-group">
+            <!-- <div cdkDropList (cdkDropListDropped)="globalService.drop($event, formArray)" class="list-group">
                 <div role="button" class="list-group-item my-1 border border-dark-subtle rounded" *ngFor="let item of formArray; index as i" cdkDrag>
                     Question {{i+1}}: {{f[i].get('question').value}}
                 </div>
-            </div>
+            </div> -->
         </div>
       </div>
     </div>
