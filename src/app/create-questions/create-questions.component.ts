@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -46,6 +47,10 @@ export class CreateQuestionsComponent implements OnInit {
   }
 
   get f(): { [key: string]: any } {
+    return this.questions.controls;
+  }
+
+  get formArray(){
     return this.questions.controls;
   }
 
@@ -106,9 +111,9 @@ export class CreateQuestionsComponent implements OnInit {
     return options;
    }
 
-   changeOption(){
-    
-   }
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.questions.controls, event.previousIndex, event.currentIndex);
+  }
 
    submitLoader:boolean = false;
    submit(){

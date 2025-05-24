@@ -6,7 +6,10 @@
     </div> -->
     <div class="pb-3">
         <h4 class="text-2xl fw-bold mb-4 text-center">Write Question and Select type of Question</h4>
+
+        <h5 role="button" class="fw-semibold ms-4 ps-2 text-primary-emphasis"  data-bs-toggle="modal" data-bs-target="#setOrderModal">Set Order</h5>
     </div>
+
 
     <form [formGroup]="questionForm" class="px-3 mx-3">
 
@@ -114,8 +117,8 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-semibold">Delete Question {{toBeDeleted+1}}</h5>
+      <div class="modal-header bg-secondary text-light">
+        <h5 class="modal-title">Delete Question {{toBeDeleted+1}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -128,6 +131,32 @@
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-outline-danger" (click)="deleteQuestions(toBeDeleted)" data-bs-dismiss="modal">Delete</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Questions Set Order Modal -->
+
+<div class="modal fade" id="setOrderModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-light">
+        <h5 class="modal-title">Set Order</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div cdkDropList (cdkDropListDropped)="drop($event)" class="list-group">
+                <div role="button" class="list-group-item my-1 border border-dark-subtle rounded" *ngFor="let item of formArray; index as i" cdkDrag>
+                    Question: {{f[i].get('question').value}}
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteQuestions(toBeDeleted)" data-bs-dismiss="modal">Delete</button>
+      </div> -->
     </div>
   </div>
 </div>

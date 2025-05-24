@@ -9,6 +9,7 @@ import { CreateQuestionsComponent } from './create-questions/create-questions.co
 import { HeaderComponent } from './header/header.component';
 import { FinalizePdfComponent } from './create-questions/finalize-pdf/finalize-pdf.component';
 import { HeadingComponent } from './create-questions/heading/heading.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { HeadingComponent } from './create-questions/heading/heading.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
