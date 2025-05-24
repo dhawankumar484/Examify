@@ -1,7 +1,7 @@
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-create-questions',
@@ -17,6 +17,7 @@ export class CreateQuestionsComponent implements OnInit {
     private formBuilder: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,
+    public globalService: GlobalService,
   ) { }
 
   ngOnInit(): void {
@@ -110,10 +111,6 @@ export class CreateQuestionsComponent implements OnInit {
     }
     return options;
    }
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.questions.controls, event.previousIndex, event.currentIndex);
-  }
 
    submitLoader:boolean = false;
    submit(){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators, FormControl, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { GlobalService } from 'src/app/global.service';
 
 @Component({
   selector: 'app-heading',
@@ -10,8 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class HeadingComponent implements OnInit {
 
   headings:any[] = [{title:'', fontSize:18, align:'center'}]
+  toBeDeleted:any;
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, public  globalService:GlobalService) { }
 
   ngOnInit(): void {
   }
