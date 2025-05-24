@@ -13,7 +13,7 @@
         <div formArrayName="questions" *ngFor="let question of questions.controls; let i = index" class="mt-3">
             <ng-container [formGroupName]="i">
                 <div *ngIf="i>0 || questions.controls.length>1" class="col-lg-12 text-end text-danger h-20 bg-transparent mx-2 px-2 cursor-pointer">
-                    <span role="button" class="text-danger link-underline-danger icon-link icon-link-hover link-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+                    <span role="button" class="text-danger link-underline-danger icon-link icon-link-hover link-secondary" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="toBeDeleted = i" >
                         <i class="bi bi-trash mb-2 ps-1"></i> Delete
                     </span>
                 </div>
@@ -25,7 +25,7 @@
                         Question {{i+1}} is required.
                     </span>
                 </div>
-                <h6 class="text-2xl mt-3">Select type of Answer</h6>
+                <h6 class="text-2xl mt-3">Select Type of Answer</h6>
                 <div class="">
                     <span class="custom-control custom-radio mt-2 mt-lg-0">
 					    <input type="radio" formControlName="type" class="btn-check" value="input" id="input" ngModel (click)="addLineInput(i)">
@@ -46,6 +46,9 @@
                         <input type="radio" formControlName="type" class="btn-check" value="no_answer"  id="no_answer" ngModel (click)="selectOther(i)">
                         <label style="margin-left: 8px;" class="mt-2 col-12 col-sm-5 col-lg-2 form-check-label custom-control-label btn btn-outline-success" for="no_answer">No Answer</label>
                     </span>
+                    <div *ngIf="f[i].get('type')?.errors?.['required'] && (f[i].get('type')?.touched || f[i].get('type')?.dirty)" class="text-danger ms-2">
+                        Answer Type is required.
+                    </div>
 
                     <div class="mt-3 ms-2 col-12 col-md-6 col-lg-4" *ngIf="questions.controls[i].value.type=='input'">
                         <input type="number" formControlName="numberOfLine" class="form-control" placeholder="Enter number of lines" >
@@ -72,9 +75,6 @@
                             Maximum Options should not be more than 10.
                         </span>
                     </div>
-                </div>
-                <div *ngIf="f[i].get('type')?.errors?.['required'] && (f[i].get('type')?.touched || f[i].get('type')?.dirty)" class="text-danger">
-                    Answer Type is required.
                 </div>
 
                 <div class="row my-3">
@@ -107,3 +107,27 @@
         </div>
     </form>
 </section>
+
+
+<!-- Delete question modal -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-semibold">Delete Question {{toBeDeleted+1}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+            <i class="bi bi-trash fs-1 text-danger fw-bold"></i>
+            <h5 class="">Are You Sure You Want To Delete Question {{toBeDeleted + 1}}?</h5>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteQuestions(toBeDeleted)" data-bs-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

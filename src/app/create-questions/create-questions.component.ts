@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CreateQuestionsComponent implements OnInit {
 
   questionForm!: FormGroup;
+  toBeDeleted:any;
 
   constructor(
     private formBuilder: FormBuilder,
